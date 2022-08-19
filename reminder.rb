@@ -8,7 +8,7 @@ So that I can focus on tasks to complete
 I want to mark tasks as complete and have them disappear from the list.
 =end
 
-class Reminder
+class Tasks
     def initialize(name) # name is a string
       @name = name
       @list = []
@@ -20,7 +20,6 @@ class Reminder
     end
   
 
-
     def remind()
       # Throws an exception if no task is set
       fail “List is empty!” if @list.empty?
@@ -29,14 +28,16 @@ class Reminder
     end
 
     def mark_completed(task)
-      
+      @completed_task = task
+      if @list.include?(@completed_task)
+        @list.delete(@completed_task)
     end
   end
 
 # EXAMPLE
 
-reminder = Reminder.new("Kay")
-reminder.show_tasks("Walk the dog")
-reminder.show_tasks("Go to the gym")
-reminder.remind()
+tasks = Tasks.new("Kay")
+tasks.show_tasks("Walk the dog")
+tasks.show_tasks("Go to the gym")
+tasks.remind()
 
